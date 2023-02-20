@@ -33,7 +33,9 @@
 ```json
 requires
 {
-    "notes":string,
+    "title":string,
+    "body":string,
+
 }
 ```
 

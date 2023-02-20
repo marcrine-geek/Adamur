@@ -52,7 +52,7 @@ def get_notes():
             return {"message":"That note does not exist"}, 400
         else:
             
-            return {"data":note.notes}
+            return {"data":note.body}
 
 #get all notes        
 @app.route('/get/all/notes', methods=['GET', 'POST'])
