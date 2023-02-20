@@ -1,3 +1,4 @@
+import json
 import os
 from cmath import log
 
@@ -47,15 +48,12 @@ def get_notes():
     if request.method == 'GET':
         notes_id = request.args.get('id')
         note = UsernotesModel.query.filter_by(id=notes_id).first()
+        print(note.notes)
         if note is None:
             return {"message":"That note does not exist"}, 400
         else:
             
-            cols = ['id', 'notes']
-        
-            result = [{col: getattr(d, col) for col in cols} for d in note]
-        
-            return jsonify(data=result)
+            return {"data":note.notes}
 
 #get all notes        
 @app.route('/get/all/notes', methods=['GET', 'POST'])

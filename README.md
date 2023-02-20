@@ -26,6 +26,8 @@
 
 # POST
 
+### tested
+
 `/post/notes`
 
 ```json
@@ -66,6 +68,8 @@ response status 200
 # GET
 
 ## get all notes
+
+### tested
 
 `/get/all/notes`
 
