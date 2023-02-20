@@ -32,10 +32,10 @@ def new():
 @app.route('/post/notes', methods=['GET', 'POST'])
 def post_notes():
     if request.method == 'POST':
-        notes = request.json['notes']
-
+        title = request.json['title']
+        body = request.json['body']
         
-        record = UsernotesModel(notes=notes)
+        record = UsernotesModel(title=title, body=body)
         
         db.session.add(record) 
         db.session.commit() 
@@ -48,7 +48,6 @@ def get_notes():
     if request.method == 'GET':
         notes_id = request.args.get('id')
         note = UsernotesModel.query.filter_by(id=notes_id).first()
-        print(note.notes)
         if note is None:
             return {"message":"That note does not exist"}, 400
         else:
@@ -64,7 +63,7 @@ def getall_notes():
         if notes is None:
             return {"message":"no notes"}, 200
         else:
-            cols = ['id', 'notes']
+            cols = ['id', 'title', 'body']
         
             result = [{col: getattr(d, col) for col in cols} for d in notes]
         
