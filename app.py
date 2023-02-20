@@ -18,6 +18,10 @@ db.init_app(app)
 
 CORS(app)
 
+api = Api(app, version = "1.0", 
+		  title = "adamur", 
+		  description = "Admin panel",
+          doc="/docs")
 
 @app.route('/')
 def new():
@@ -39,7 +43,7 @@ def post_notes():
     
 #get specific notes by id
 @app.route('/get/note', methods=['GET', 'POST'])
-def post_notes():
+def get_notes():
     if request.method == 'GET':
         notes_id = request.args.get('id')
         note = UsernotesModel.query.filter_by(id=notes_id).first()
@@ -55,7 +59,7 @@ def post_notes():
 
 #get all notes        
 @app.route('/get/all/notes', methods=['GET', 'POST'])
-def post_notes():
+def getall_notes():
     if request.method == 'GET':
         notes = db.session.query(UsernotesModel).all()
 
@@ -71,7 +75,7 @@ def post_notes():
         
 #delete specific notes by id
 @app.route('/delete/notes', methods=['GET', 'POST'])
-def post_notes():
+def delete_notes():
     if request.method == 'GET':
         notes_id = request.args.get('id')
         note = UsernotesModel.query.filter_by(id=notes_id).first()

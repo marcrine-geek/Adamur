@@ -1,9 +1,10 @@
 from flask import Flask
-from config import DevelopmentConfig
-from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from db import db
+from flask_script import Manager
+
 from app import app
+from config import DevelopmentConfig
+from db import db
 
 app.config.from_object(DevelopmentConfig)
 
